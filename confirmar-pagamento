@@ -1,0 +1,20 @@
+<?php
+session_start();
+include('../includes/database.php');
+
+// Simula verificação de pagamento
+// Isso deveria ser uma verificação real via API para confirmar o pagamento
+$status_pagamento = 'pago';  // Suponha que o pagamento foi feito com sucesso
+
+if ($status_pagamento == 'pago') {
+    $usuario_email = $_SESSION['usuario_email'];
+    
+    // Atualizar status de pagamento no banco de dados
+    $stmt = $pdo->prepare("UPDATE pedidos SET status_pagamento = 'pago' WHERE usuario_email = ? AND status_pagamento = 'pendente'");
+    $stmt->execute([$usuario_email]);
+
+    echo "<h2>Pagamento confirmado! Obrigado pela sua compra.</h2>";
+} else {
+    echo "<h2>Pagamento ainda pendente. Por favor, aguarde a confirmação.</h2>";
+}
+?>
