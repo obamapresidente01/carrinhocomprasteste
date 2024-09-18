@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $usuario_email = $_SESSION['usuario_email'];
     $total = 0;
 
+    // Registro da compra
     foreach ($_POST['quantidade'] as $livro_id => $quantidade) {
         if ($quantidade > 0) {
             $stmt = $pdo->prepare("SELECT preco FROM livros WHERE id = ?");
@@ -25,6 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    echo "<h2>Compra realizada! Valor total: R$$total</h2>";
+    // Redirecionar para a página de pagamento PIX
+    header('Location: pix-payment.php?total=' . $total);
+    exit();
 }
 ?>
