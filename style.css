@@ -6,11 +6,23 @@ h1 {
     color: #2c3e50;
 }
 
-div {
-    margin-bottom: 15px;
+img {
+    width: 200px;
+    height: 200px;
+    margin: 20px 0;
 }
 
-input, button {
+a {
+    display: block;
+    margin-top: 20px;
     padding: 10px;
-    margin: 5px;
+    background-color: #27ae60;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    width: 150px;
+}
+
+a:hover {
+    background-color: #2ecc71;
 }
